@@ -6,6 +6,12 @@ on:
       - master
     paths:
       - 'stable/**'
+  workflow_dispatch:
+    inputs:
+      git_ref:
+        description: Git ref
+        required: false
+        default: master
 
 jobs:
   release:
@@ -15,6 +21,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          ref: "${{ github.event.inputs.tags }}"
 
       - name: Configure Git
         run: |
