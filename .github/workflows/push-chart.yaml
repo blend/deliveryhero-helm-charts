@@ -1,27 +1,29 @@
-name: Push Chart
+name: Release Charts
+
 on:
   push:
     branches:
       - master
     paths:
       - 'stable/**'
+
 jobs:
-  push:
-    name: Push to Chartmuseum
+  release:
     runs-on: ubuntu-latest
-    container:
-      image: alpine/helm:3.3.0
     steps:
-      - name: Checkout Code
+      - name: Checkout
         uses: actions/checkout@v2
-      - name: Install git
-        run: apk add --no-cache git
-      - name: Install Helm Push plugin
-        run: helm plugin install https://github.com/chartmuseum/helm-push --version=0.10.0
-      - name: Adding DH repository
-        run: helm repo add deliveryhero https://charts.deliveryhero.io/
-      - name: Push charts to DH repository
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.2.1
         env:
-          HELM_REPO_USERNAME: ${{ secrets.CHARTMUSEUM_USER }}
-          HELM_REPO_PASSWORD: ${{ secrets.CHARTMUSEUM_PASS }}
-        run: for chart in stable/*; do helm dependencies update $chart && helm cm-push $chart deliveryhero; done
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        with:
+          charts_dir: stable
