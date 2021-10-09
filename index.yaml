@@ -471,6 +471,31 @@ entries:
   node-problem-detector:
   - apiVersion: v1
     appVersion: v0.8.10
+    created: "2021-10-09T00:26:04.308041337Z"
+    description: 'This chart installs a [node-problem-detector](https://github.com/kubernetes/node-problem-detector)
+      daemonset. This tool aims to make various node problems visible to the upstream
+      layers in cluster management stack. It is a daemon which runs on each node,
+      detects node problems and reports them to apiserver. '
+    digest: 01f157977d44a4ee769d9bd4965d841fba76941a6e1c52f3e4e0caa63b9b0ae7
+    home: https://github.com/kubernetes/node-problem-detector
+    icon: https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png
+    keywords:
+    - node
+    - problem
+    - detector
+    - monitoring
+    maintainers:
+    - email: no-reply@deliveryhero.com
+      name: max-rocket-internet
+    name: node-problem-detector
+    sources:
+    - https://github.com/kubernetes/node-problem-detector
+    - https://kubernetes.io/docs/concepts/architecture/nodes/#condition
+    urls:
+    - https://github.com/blend/deliveryhero-helm-charts/releases/download/node-problem-detector-2.0.9/node-problem-detector-2.0.9.tgz
+    version: 2.0.9
+  - apiVersion: v1
+    appVersion: v0.8.10
     created: "2021-10-09T00:18:12.454123768Z"
     description: 'This chart installs a [node-problem-detector](https://github.com/kubernetes/node-problem-detector)
       daemonset. This tool aims to make various node problems visible to the upstream
@@ -899,4 +924,4 @@ entries:
     urls:
     - https://github.com/blend/deliveryhero-helm-charts/releases/download/wiremock-1.1.3/wiremock-1.1.3.tgz
     version: 1.1.3
-generated: "2021-10-09T00:18:16.510977886Z"
+generated: "2021-10-09T00:26:06.793400883Z"
